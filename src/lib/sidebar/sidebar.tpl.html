@@ -1,0 +1,7 @@
+<div class="sidebar" ng-if="sidebar.items.length">
+    <ul class="nav nav-sidebar">
+        <li ng-repeat="item in sidebar.items track by $index" ng-click="sidebar.setAsActive(item)" ng-class="{active: sidebar.active == item.url}">
+            <a href="#{{item.url}}" ng-bind="item.title"></a>
+        </li>
+    </ul>
+</div>
