@@ -6,7 +6,7 @@ deploy:
   provider: npm
   email: almilo@almilo.es
   api_key:
-    secure: pkKWjqzr4EI0kBlnL2GrggQNrWuXw8QbpA88UpJfUd5dtF8eR5L2J5CY48n/R2Xl1liAuUm11pf7JN1eLYgUI3fjdj98giTVdzMjsRTRzrqcHpXrXKsfiXwC60IRs0Otyg/cBkXPWK34DlgsEoYpAb8Td81pRT7o63/y2/vpoMs=
+    secure: Nj7g/D6ePEtCxq3qC27HuyeX2evzxu7iUqRmE2t+FAqCaXRf6AZ/76rj/g14dcp0vYbD4c0TsNqS0a3cgJXvkTyZxt//iVDEizn7+HtcG2rAFUPlMUHqWZWO4mGl+Sjw0lC2iq9+8y1lVDALp7rkex8Cy1VJMUa9ObwHkNzTdIjYAqgOttD3ghSK4bCzOzsJatiGN/Zs2zY5TXDGhHyOujFQ9A+chQegc9FavP4V88bOer+n/zGhnEs3EIL412bh2u7/iFZHjd2l1Jon7tK58hWEtktddEvRKit6WWOOSHhZpfzKMRCaAF5HRriU1sbyfn1IGi/ZCS6at8XlGlH+C7LVg+GlACpVHFwyKFw1jc8xvIS9RErWXZNCcG9xcCuxCE7TCvl2HXBPkbzn9xnRWHTHXiXc0NqutPwkMBiAiM1lI3Ows4EzPIGeu51Leb6WzSwrOc7Y3NjuW8CSvVgYH+v+kLCGPUF1bg1tLdv+N1FLYUuuVX37DvcL+JUoW/P9HyD0AC7JSB+RdaTHFZJON1enS7+Mxr6s5ZAvTKT/MVC4pQ156djy4cyx4NszkqXnMHqhsXqC0s8AlbvWIyDEd/ktlMQ3C0WMedVGuRT1HE1PXpMKRZXUqSrLXoJm9VWvdXv22tc4NjB96kfTVvo4eJFITOG6r0PZqv0L3/zel8I=
   on:
     tags: true
     all_branches: true
