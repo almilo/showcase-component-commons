@@ -1,0 +1,13 @@
+{
+  "name": "showcase-component-commons",
+  "version": "0.0.0",
+  "description": "Common components for showcase applications",
+  "author": "edorasware AG",
+  "license": "MIT",
+  "homepage": "https://www.edorasware.com",
+  "repository": "https://github.com/edorasware/showcase-component-commons.git",
+  "dependencies": {
+    "angular": "^1.4.1",
+    "js-commons": "0.0.19"
+  }
+}
