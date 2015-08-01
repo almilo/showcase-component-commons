@@ -9,6 +9,13 @@ module.exports = function ($scope) {
         {id: 'metadata', label: 'Metadata'}
     ];
 
+    this.setHasExample = function (hasExample) {
+        if (hasExample) {
+            selected = 'example';
+        }
+        $scope.hasExample = hasExample;
+    };
+
     $scope.editorOptions = {
         lineNumbers: true,
         lineWrapping: true,

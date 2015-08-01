@@ -1,4 +1,6 @@
 <ul class="nav nav-tabs">
+    <li ng-class="getSelected() === 'example' && 'active'"><a href="" ng-click="setSelected('example')" ng-bind="'Example'" ng-if="hasExample"></a></li>
     <li ng-repeat="propertyToEdit in propertiesToEdit" ng-class="getSelected() === propertyToEdit.id && 'active'"><a href="" ng-click="setSelected(propertyToEdit.id)" ng-bind="propertyToEdit.label"></a></li>
 </ul>
+<div id="view-model-widget-example-container" ng-show="getSelected() === 'example'"></div>
 <ui-codemirror ng-repeat="propertyToEdit in propertiesToEdit" ng-model="editorModel[propertyToEdit.id]" ui-codemirror-opts="editorOptions" ng-if="getSelected() === propertyToEdit.id"></ui-codemirror>
