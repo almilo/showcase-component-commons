@@ -14,10 +14,28 @@ module.exports = function () {
     };
 
     function link(scope, iElement, iAttributes, viewModelWidgetController, $transclude) {
-        $transclude(function (clone) {
-            viewModelWidgetController.setHasExample(clone.length > 0);
+        var transcludedContent, transclusionScope;
 
-            iElement.find('#view-model-widget-example-container').append(clone);
-        });
+        viewModelWidgetController.setRenderCallback(render);
+
+        render();
+
+        function render() {
+            console.log('RENDER');
+
+            if (transcludedContent) {
+                transcludedContent.remove();
+                transclusionScope.$destroy();
+            }
+
+            $transclude(function (clone, scope) {
+                viewModelWidgetController.setHasExample(clone.length > 0);
+
+                iElement.find('#view-model-widget-example-container').append(clone);
+
+                transcludedContent = clone;
+                transclusionScope = scope;
+            });
+        }
     }
 };

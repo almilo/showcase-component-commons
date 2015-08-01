@@ -16,6 +16,10 @@ module.exports = function ($scope) {
         $scope.hasExample = hasExample;
     };
 
+    this.setRenderCallback = function (renderCallback) {
+        $scope.render = renderCallback;
+    };
+
     $scope.editorOptions = {
         lineNumbers: true,
         lineWrapping: true,
