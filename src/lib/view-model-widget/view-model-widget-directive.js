@@ -21,15 +21,13 @@ module.exports = function () {
         render();
 
         function render() {
-            console.log('RENDER');
-
             if (transcludedContent) {
                 transcludedContent.remove();
                 transclusionScope.$destroy();
             }
 
             $transclude(function (clone, scope) {
-                viewModelWidgetController.setHasExample(clone.length > 0);
+                viewModelWidgetController.setContainsExample(clone.length > 0);
 
                 iElement.find('#view-model-widget-example-container').append(clone);
 

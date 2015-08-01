@@ -1,7 +1,7 @@
 var angular = require('angular');
 
 module.exports = function ($scope) {
-    var selected = 'data';
+    var containsExample = false, selectedEditor = 'data';
 
     $scope.propertiesToEdit = [
         {id: 'data', label: 'Data'},
@@ -9,30 +9,33 @@ module.exports = function ($scope) {
         {id: 'metadata', label: 'Metadata'}
     ];
 
-    this.setHasExample = function (hasExample) {
-        if (hasExample) {
-            selected = 'example';
-        }
-        $scope.hasExample = hasExample;
+    $scope.containsExample = function () {
+        return containsExample;
+    };
+
+    this.setContainsExample = function (newContainsExample) {
+        containsExample = newContainsExample;
     };
 
     this.setRenderCallback = function (renderCallback) {
         $scope.render = renderCallback;
     };
 
-    $scope.editorOptions = {
-        lineNumbers: true,
-        lineWrapping: true,
-        matchBrackets: true,
-        mode: 'application/json'
+    $scope.getSelectedEditor = function () {
+        return selectedEditor;
     };
 
-    $scope.setSelected = function (newSelected) {
-        selected = newSelected;
+    $scope.setSelectedEditor = function (newSelectedEditor) {
+        selectedEditor = newSelectedEditor;
     };
 
-    $scope.getSelected = function () {
-        return selected;
+    $scope.getEditorOptions = function () {
+        return {
+            lineNumbers: true,
+            lineWrapping: true,
+            matchBrackets: true,
+            mode: 'application/json'
+        };
     };
 
     $scope.$watch('viewModel', updateEditorModel, true);
