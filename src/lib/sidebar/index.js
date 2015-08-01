@@ -1,6 +1,8 @@
-var angular = require('angular');
-var sidebarDirective = require('./sidebar-directive');
-var sidebarService = require('./sidebar-service');
+require('./index.css');
+
+var angular = require('angular'),
+    sidebarDirective = require('./sidebar-directive'),
+    sidebarService = require('./sidebar-service');
 
 module.exports = angular.module('showcase-component-commons.sidebar', [])
     .directive('sidebar', sidebarDirective)

@@ -1,1 +1,1 @@
-module.exports = require('../src/lib/sidebar/sidebar-module');
+module.exports = require('../src/lib/sidebar');

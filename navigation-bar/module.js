@@ -1,1 +1,1 @@
-module.exports = require('../src/lib/navigation-bar/navigation-bar-module');
+module.exports = require('../src/lib/navigation-bar');
