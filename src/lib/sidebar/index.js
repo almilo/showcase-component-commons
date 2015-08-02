@@ -1,5 +1,3 @@
-require('./index.css');
-
 var angular = require('angular'),
     sidebarDirective = require('./sidebar-directive'),
     sidebarService = require('./sidebar-service');
