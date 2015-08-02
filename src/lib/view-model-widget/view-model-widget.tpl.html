@@ -1,6 +1,8 @@
 <div id="view-model-widget-example-container" ng-show="containsExample()"></div>
 <ul class="nav nav-tabs">
-    <li ng-repeat="propertyToEdit in propertiesToEdit" ng-class="getSelectedEditor() === propertyToEdit.id && 'active'"><a href="" ng-click="setSelectedEditor(propertyToEdit.id)" ng-bind="propertyToEdit.label"></a></li>
+    <li ng-repeat="propertyToEdit in propertiesToEdit" ng-class="getSelectedTab() === propertyToEdit.id && 'active'"><a href="" ng-click="setSelectedTab(propertyToEdit.id)" ng-bind="propertyToEdit.label"></a></li>
+    <li ng-class="getSelectedTab() === 'description' && 'active'" ng-if="description"><a href="" ng-click="setSelectedTab('description')">Description</a></li>
 </ul>
-<button class="pull-right" ng-click="render()" ng-if="containsExample() && getSelectedEditor() === 'definition'">Re-render</button>
-<ui-codemirror ng-repeat="propertyToEdit in propertiesToEdit" ng-model="editorModel[propertyToEdit.id]" ui-codemirror-opts="getEditorOptions()" ng-if="getSelectedEditor() === propertyToEdit.id"></ui-codemirror>
+<button class="btn btn-primary pull-right" ng-click="render()" ng-if="containsExample() && getSelectedEditor() === 'definition'">Re-render</button>
+<ui-codemirror ng-repeat="propertyToEdit in propertiesToEdit" ng-model="editorModel[propertyToEdit.id]" ui-codemirror-opts="editorOptions" ng-if="getSelectedTab() === propertyToEdit.id"></ui-codemirror>
+<div ng-bind-html="description" ng-if="getSelectedTab() === 'description' && description"></div>

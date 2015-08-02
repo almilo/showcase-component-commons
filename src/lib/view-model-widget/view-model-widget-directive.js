@@ -6,7 +6,8 @@ module.exports = function () {
         restrict: 'E',
         transclude: true,
         scope: {
-            viewModel: '='
+            viewModel: '=',
+            description: '='
         },
         template: viewModelWidgetTemplate,
         controller: viewModelWidgetController,
@@ -16,7 +17,7 @@ module.exports = function () {
     function link(scope, iElement, iAttributes, viewModelWidgetController, $transclude) {
         var transcludedContent, transclusionScope;
 
-        viewModelWidgetController.setRenderCallback(render);
+        scope.render = render;
 
         render();
 
@@ -26,13 +27,17 @@ module.exports = function () {
                 transclusionScope.$destroy();
             }
 
-            $transclude(function (clone, scope) {
-                viewModelWidgetController.setContainsExample(clone.length > 0);
+            $transclude(function (content, contentScope) {
+                if (content.length === 0) {
+                    return;
+                }
 
-                iElement.find('#view-model-widget-example-container').append(clone);
+                viewModelWidgetController.setContainsExample(true);
 
-                transcludedContent = clone;
-                transclusionScope = scope;
+                iElement.find('#view-model-widget-example-container').append(content);
+
+                transcludedContent = content;
+                transclusionScope = contentScope;
             });
         }
     }
