@@ -1,22 +1,37 @@
 var assert = require('js-commons').assert;
 
 module.exports = function () {
-    var navigationBarItems = [];
+    var hierarchicalMode = false, navigationBarItems = {};
 
-    this.setItems = function (items) {
-        assert.isArray(items);
-
-        navigationBarItems = items;
+    this.setHierarchicalMode = function (newHierarchicalMode) {
+        hierarchicalMode = newHierarchicalMode;
     };
 
-    this.$get = function ($route) {
-        if (navigationBarItems.length === 0) {
+    this.setItem = function (url, title) {
+        navigationBarItems[url] = title;
+    };
+
+    this.$get = function ($route, $location) {
+        if (Object.keys(navigationBarItems).length === 0) {
             navigationBarItems = extractNavigationBarItemsFromRoutes($route.routes);
         }
 
         return {
             getItems: function () {
                 return navigationBarItems;
+            },
+            isActive: function (url) {
+                var matches = hierarchicalMode ? startsWith : isSame;
+
+                return matches($location.path(), url);
+
+                function startsWith(path, url) {
+                    return path.indexOf(url) === 0;
+                }
+
+                function isSame(path, url) {
+                    return path === url;
+                }
             }
         };
     };
@@ -25,11 +40,11 @@ module.exports = function () {
         return extractRoutes(routes)
             .filter(hasTitleProperty)
             .sort(sortByOrderProperty)
-            .map(toNavigationBarItem);
+            .reduce(toNavigationBarItem, {});
 
-        function extractRoutes(routesObject) {
-            return Object.keys(routesObject).map(function (routeKey) {
-                return routesObject[routeKey]
+        function extractRoutes(routes) {
+            return Object.keys(routes).map(function (routeKey) {
+                return routes[routeKey]
             });
         }
 
@@ -41,11 +56,12 @@ module.exports = function () {
             return route1.order > route2.order;
         }
 
-        function toNavigationBarItem(route) {
-            return {
-                title: route.title,
-                url: route.path || route.originalPath
-            };
+        function toNavigationBarItem(currentNaviationBarItems, route) {
+            const url = route.path || route.originalPath;
+
+            currentNaviationBarItems[url] = route.title;
+
+            return currentNaviationBarItems;
         }
     }
 };

@@ -1,6 +1,6 @@
 var navigationbarTemplate = require('./navigation-bar.tpl.html');
 
-module.exports = function (navigationBarService, $location) {
+module.exports = function (navigationBarService) {
     return {
         restrict: 'AE',
         replace: true,
@@ -8,10 +8,7 @@ module.exports = function (navigationBarService, $location) {
         template: navigationbarTemplate,
         link: function (scope) {
             scope.items = navigationBarService.getItems();
-
-            scope.isActive = function (item) {
-                return $location.path() === item.url;
-            };
+            scope.isActive = navigationBarService.isActive;
         }
     }
 };
