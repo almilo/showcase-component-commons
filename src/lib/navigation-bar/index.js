@@ -1,5 +1,3 @@
-require('./index.css');
-
 var angular = require('angular'),
     angularRoute = require('angular-route'),
     navigationBarDirective = require('./navigation-bar-directive'),
