@@ -9,11 +9,9 @@ module.exports = function (navigationBarService, $location) {
         link: function (scope) {
             scope.items = navigationBarService.getItems();
 
-            scope.active = '/' + $location.path().split('/')[1];
-
-            scope.setAsActive = function (item) {
-                scope.active = item.url;
-            }
+            scope.isActive = function (item) {
+                return $location.path() === item.url;
+            };
         }
     }
 };
