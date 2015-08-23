@@ -4,16 +4,12 @@ module.exports = function () {
     return {
         restrict: 'AE',
         replace: true,
+        scope: {},
         template: sidebarTemplate,
-        controller: function ($location, sidebarService) {
+        controllerAs: 'sidebar',
+        controller: function (sidebarService) {
             this.items = sidebarService.getItems();
-
-            this.active = $location.path();
-
-            this.setAsActive = function (item) {
-                this.active = item.url;
-            };
-        },
-        controllerAs: 'sidebar'
+            this.isActive = sidebarService.isActive;
+        }
     };
 };

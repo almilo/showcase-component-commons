@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav">
-            <li ng-repeat="(url, title) in items track by $index" ng-class="isActive(url) && 'active'">
+            <li ng-repeat="(url, title) in navigationBar.items track by $index" ng-class="navigationBar.isActive(url) && 'active'">
                 <a ng-href="#{{url}}">{{title}}</a>
             </li>
         </ul>

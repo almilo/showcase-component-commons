@@ -1,4 +1,4 @@
-var angular = require('angular');
+var jsondiffpatch = require('jsondiffpatch').create();
 
 module.exports = function ($scope) {
     var selectedTab = 'data', containsExample = false;
@@ -29,7 +29,8 @@ module.exports = function ($scope) {
         lineNumbers: true,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'application/json'
+        mode: 'application/json',
+        viewportMargin: Infinity
     };
 
     $scope.$watch('viewModel', updateEditorModel, true);
@@ -52,8 +53,28 @@ module.exports = function ($scope) {
             return;
         }
 
-        angular.copy(JSON.parse(editorModel.definition), $scope.viewModel.definition);
-        angular.copy(JSON.parse(editorModel.data), $scope.viewModel.data);
-        angular.copy(JSON.parse(editorModel.metadata), $scope.viewModel.metadata);
+        safeUpdateWith($scope.viewModel, function () {
+            return {
+                definition: JSON.parse(editorModel.definition),
+                data: JSON.parse(editorModel.data),
+                metadata: JSON.parse(editorModel.metadata)
+            }
+        });
+    }
+
+    function safeUpdateWith(target, sourceProvider) {
+        try {
+            updateWith(target, sourceProvider());
+        } catch (e) {
+            if (!e instanceof SyntaxError) {
+                throw e;
+            }
+        }
+    }
+
+    function updateWith(target, source) {
+        var delta = jsondiffpatch.diff(target, source);
+
+        jsondiffpatch.patch(target, delta);
     }
 };

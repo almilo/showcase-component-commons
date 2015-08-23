@@ -1,6 +1,6 @@
-<div class="sidebar" ng-if="sidebar.items.length">
+<div class="sidebar">
     <ul class="nav nav-sidebar">
-        <li ng-repeat="item in sidebar.items track by $index" ng-click="sidebar.setAsActive(item)" ng-class="{active: sidebar.active == item.url}">
+        <li ng-repeat="item in sidebar.items track by $index" ng-class="sidebar.isActive(item) && 'active'">
             <a href="#{{item.url}}" ng-bind="item.title"></a>
         </li>
     </ul>

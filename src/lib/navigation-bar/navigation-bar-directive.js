@@ -1,14 +1,15 @@
 var navigationbarTemplate = require('./navigation-bar.tpl.html');
 
-module.exports = function (navigationBarService) {
+module.exports = function () {
     return {
         restrict: 'AE',
         replace: true,
         scope: {},
         template: navigationbarTemplate,
-        link: function (scope) {
-            scope.items = navigationBarService.getItems();
-            scope.isActive = navigationBarService.isActive;
+        controllerAs: 'navigationBar',
+        controller: function (navigationBarService) {
+            this.items = navigationBarService.getItems();
+            this.isActive = navigationBarService.isActive;
         }
     }
 };
