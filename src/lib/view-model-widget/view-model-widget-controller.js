@@ -55,11 +55,15 @@ module.exports = function ($scope) {
 
         safeUpdateWith($scope.viewModel, function () {
             return {
-                definition: JSON.parse(editorModel.definition),
-                data: JSON.parse(editorModel.data),
-                metadata: JSON.parse(editorModel.metadata)
+                definition: safeParse(editorModel.definition),
+                data: safeParse(editorModel.data),
+                metadata: safeParse(editorModel.metadata)
             }
         });
+    }
+
+    function safeParse(target) {
+        return target ? JSON.parse(target) : {};
     }
 
     function safeUpdateWith(target, sourceProvider) {
